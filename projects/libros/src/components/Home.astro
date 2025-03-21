@@ -1,13 +1,33 @@
 ---
-import Counter from "../react components/Counter";
+import { getCollection } from "astro:content";
+
+const books = await getCollection("books")
 ---
 
 <html>
     <head>
-        <title>Home Component</title>
+        <title>Homepage</title>
     </head>
     <body>
-        <h1>Welcome to the Home Component</h1>
-        <Counter client:load />
+        <main class="flex flex-col gap-10">
+            <h1 class="text-5xl font-bold">Manga Covers</h1>
+            <section aria-label="manga covers" >
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    {
+                        books.map(book =>{
+                            const {slug, data} = book
+                            const {title, author, img, description, release_date} = data 
+                            return(
+                                <article class="flex flex-col justify-between gap-1 items-center">
+                                    <img class="" src={`/img/${img}`} alt={title}>
+                                    <h3 class="text-lg font-medium">{title}</h3>
+                                </article>
+                            )
+                        })
+                    }
+                </div>
+            </section>
+        </main>
+        
     </body>
 </html></body></head>
