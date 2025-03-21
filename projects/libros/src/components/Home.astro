@@ -10,17 +10,20 @@ const books = await getCollection("books")
     </head>
     <body>
         <main class="flex flex-col gap-10">
-            <h1 class="text-5xl font-bold">Manga Covers</h1>
+            <h1 class="text-5xl font-bold text-center">Manga Covers</h1>
             <section aria-label="manga covers" >
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {
                         books.map(book =>{
                             const {slug, data} = book
                             const {title, author, img, description, release_date} = data 
                             return(
-                                <article class="flex flex-col justify-between gap-1 items-center">
-                                    <img class="" src={`/img/${img}`} alt={title}>
+                                <article class="flex flex-col items-center gap-5 p-5 hover:bg-neutral-600 rounded-lg transition">
+                                    <a href={`/book/${slug}`}>
+                                        <img class="rounded" src={`/img/${img}`} alt={title} />
+                                    </a>
                                     <h3 class="text-lg font-medium">{title}</h3>
+                                    
                                 </article>
                             )
                         })
