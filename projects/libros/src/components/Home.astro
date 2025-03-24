@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 
 const books = await getCollection("books")
+
+
 ---
 
 <html>
@@ -20,7 +22,12 @@ const books = await getCollection("books")
                             return(
                                 <article class="flex flex-col items-center gap-5 p-5 hover:bg-neutral-600 rounded-lg transition">
                                     <a href={`/book/${slug}`}>
-                                        <img class="rounded" src={`/img/${img}`} alt={title} />
+                                        <img  
+                                            transition:name={`img-${slug}`}
+                                            class="rounded" 
+                                            src={`/img/${img}`} 
+                                            alt={title} 
+                                        />
                                     </a>
                                     <h3 class="text-lg font-medium">{title}</h3>
                                     

@@ -1,0 +1,15 @@
+---
+const SPAIN = "ES"
+
+const country = Astro.request.headers.get("X-Vercel-IP-Country") ?? "ES"
+
+const storeCountry = country === SPAIN ? "spain" : "usa"
+const countryName = country  === SPAIN ? "Spain" : "United States"
+
+const {buy} = Astro.props
+const url = buy[storeCountry]
+---
+<a href={url} class="bg-yellow-500 text-black font-medium py-2 px-4 rounded cursor-pointer flex gap-3 items-center" target="_blank">
+    Buy in Amazon {countryName}
+    <img class="max-w-7" src="/img/amazon.svg" alt="">
+</a>

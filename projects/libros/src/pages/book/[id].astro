@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Book from "../../components/Book.astro"
+export const prerender = true
 
 export async function getStaticPaths (){
     const books = await getCollection("books")
@@ -16,5 +17,5 @@ const { data } = book
 const { title, release_date, img, description, author } = data
 ---
 <Layout>
-    <Book data={data} /> 
+    <Book book={book} /> 
 </Layout>
