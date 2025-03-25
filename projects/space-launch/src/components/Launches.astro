@@ -1,4 +1,5 @@
 ---
+import { type APISpaceXResponse } from "../types/api"
 const res = await fetch("https://api.spacexdata.com/v5/launches/query", {
     method: "POST",
     headers:{
@@ -15,5 +16,5 @@ const res = await fetch("https://api.spacexdata.com/v5/launches/query", {
     })
 
 })
-const data = JSON.stringify(await res.json())
+const { docs } = await res.json() as APISpaceXResponse
 ---
