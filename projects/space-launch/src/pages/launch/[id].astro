@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getLaunchById, getLaunches } from "../../services/api";
+import Layout from "../../layouts/Layout.astro";
+import HeaderButton from "../../components/HeaderButton.astro";
+// export const getStaticPaths = (async() => {
+//     const launches = await getLaunches()
+//     return launches.map(launch => (
+//         {params: {id: launch.id}}
+//     ))
+// })
+
+const { id } = Astro.params
+let launch
+if(id){
+    launch = await getLaunchById({id})
+}
+---
+<Layout>
+    <article class=" p-6 rounded-lg shadow-md">
+        <img class="mx-auto max-w-sm mb-4" src={launch?.links?.patch.large} alt={launch?.name}>
+        <h2 class="text-5xl text-center font-medium font-[orbitron] mb-2">{launch?.name}</h2>
+        <h3 class="text-xl text-neutral-500 text-center mb-5">{launch?.id}</h3>
+        <p class="text-neutral-400 mb-8">{launch?.details}</p>
+
+        <div class="mb-4">
+            <h2 class="text-2xl font-semibold mb-2">Core Details</h2>
+            <ul class="list-disc list-inside">
+                {launch?.cores.map(core => (
+                    <li class="text-neutral-400">
+                        Core ID: {core.core}, Flight: {core.flight}, Reused: {core.reused ? "Yes" : "No"}
+                    </li>
+                ))}
+            </ul>
+        </div>
+
+        <div class="mb-10">
+            <h2 class="text-2xl font-semibold mb-2">More information</h2>
+            <ul class="flex gap-3 py-3">
+                <li>
+                    <HeaderButton target="_blank" link={launch?.links?.wikipedia}>
+                        Wikipedia
+                    </HeaderButton>
+                </li>
+                <li>
+                    <HeaderButton target="_blank" link={launch?.links?.article}>
+                        Article
+                    </HeaderButton>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mb-4">
+            <h2 class="text-center text-2xl font-semibold font-[orbitron] mb-5">Watch the Launch</h2>
+            <iframe class="w-full aspect-video" src={`https://www.youtube.com/embed/${launch?.links?.youtube_id}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </article>
+</Layout>

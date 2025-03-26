@@ -22,22 +22,7 @@ return launches
 }
 
 export const getLaunchById = async({id}: {id:string}) =>{
-    const res = await fetch(`https://api.spacexdata.com/v5/launches/${id }`, {
-        method: "POST",
-        headers:{
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            query: {},
-            options: {
-               sort: {
-                date_unix: "asc"
-               },
-               limit: 12
-            },
-        })
-    
-    })
+    const res = await fetch(`https://api.spacexdata.com/v5/launches/${id }`)
     const launch = await res.json() as Doc
     return launch
 }

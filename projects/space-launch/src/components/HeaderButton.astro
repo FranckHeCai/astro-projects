@@ -1,10 +1,13 @@
 ---
+import { undefined } from 'astro:schema'
+
 interface Props {
-    link: string
+    link: string | undefined
+    target: string
 }
-const { link } = Astro.props
+const { link, target } = Astro.props
 ---
 
-<a href={link} class="py-2 px-4 border rounded-lg bg-neutral-900 hover:bg-neutral-700 transition">
+<a target={target} href={link} class="py-2 px-4 border rounded-lg bg-neutral-900 hover:bg-neutral-700 transition">
     <slot/>
 </a>
