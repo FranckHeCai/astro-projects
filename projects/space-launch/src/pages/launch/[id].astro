@@ -18,7 +18,7 @@ if(id){
 ---
 <Layout>
     <article class=" p-6 rounded-lg shadow-md">
-        <img class="mx-auto max-w-sm mb-4" src={launch?.links?.patch.large} alt={launch?.name}>
+        <img transition:name={`img-${launch?.id}`} class="mx-auto max-w-sm mb-4" src={launch?.links?.patch.large} alt={launch?.name}>
         <h2 class="text-5xl text-center font-medium font-[orbitron] mb-2">{launch?.name}</h2>
         <h3 class="text-xl text-neutral-500 text-center mb-5">{launch?.id}</h3>
         <p class="text-neutral-400 mb-8">{launch?.details}</p>
