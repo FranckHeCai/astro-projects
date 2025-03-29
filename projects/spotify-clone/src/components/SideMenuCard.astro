@@ -1,0 +1,25 @@
+---
+import Play from "@/icons/Play.astro"
+import { type Playlist } from "@/lib/data"
+interface Props {
+    playlist : Playlist
+}
+const { playlist } = Astro.props
+const { id, albumId, title, color, cover, artists } = playlist
+---
+<li >
+    <a class="flex gap-3.5 p-2 hover:bg-neutral-800 rounded-md group" href=`/playlists/${id}`>
+        <div class="relative">
+            <picture>
+                <img class="w-[50px] rounded group-hover:opacity-70" src={cover} alt={title}>
+            </picture>
+            <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <Play />
+            </span>
+        </div>
+        <div class="flex flex-auto flex-col truncate">
+            <h3>{title}</h3>
+            <p class="text-neutral-400 text-sm">{artists}</p>
+        </div>
+    </a>
+</li>
