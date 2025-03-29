@@ -1,5 +1,6 @@
 ---
 import './src/styles/global.css'
+import AsideMenu from "../components/AsideMenu.astro"
 ---
 <!doctype html>
 <html lang="en">
@@ -12,10 +13,10 @@ import './src/styles/global.css'
 	</head>
 	<body class="bg-neutral-950">
 		<div id="app" class="relative h-screen p-2 gap-2">
-			<aside class="[grid-area:aside] flex flex-col overflow-y-auto bg-violet-200">
-				ASIDE
+			<aside class="[grid-area:aside] flex flex-col overflow-y-auto">
+				<AsideMenu />
 			</aside>
-			<main class="[grid-area:main] bg-emerald-200">
+			<main class="[grid-area:main] bg-neutral-900 overflow-y-auto rounded-lg border-2 border-neutral-500">
 				MAIN
 			</main>
 			<footer class="[grid-area:footer] min-h-[50px]">
