@@ -8,7 +8,7 @@ const { playlist } = Astro.props
 const { id, albumId, title, color, cover, artists } = playlist
 ---
 <li >
-    <a class="flex gap-3.5 p-2 hover:bg-neutral-800 rounded-md group" href=`/playlists/${id}`>
+    <a class="flex gap-3.5 p-2 hover:bg-neutral-800 rounded-md group" href=`/playlist/${id}`>
         <div class="relative">
             <picture>
                 <img class="w-[50px] rounded group-hover:opacity-70" src={cover} alt={title}>
