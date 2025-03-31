@@ -1,11 +1,12 @@
 import Play from "@/icons/Play.astro";
 import Pause from "@/icons/Pause.astro";
 import { useEffect, useRef, useState } from "react";
+import { usePlayerStore } from "@/store/playstore";
 
-const PlayIcon = () => <svg viewBox="0 0 24 24" class="h-8 w-8" fill="black"
+export const PlayIcon = () => <svg viewBox="0 0 24 24" class="h-8 w-8" fill="black"
 ><path fill="black" d="M8 5.14v14l11-7-11-7z"></path></svg>
 
-const PauseIcon = () => 
+export const PauseIcon = () => 
 <svg class="h-8 w-8" aria-hidden="true" viewBox="0 0 24 24" fill="black">
     <g transform="translate(4, 4)">
         <path fill="black"
@@ -16,10 +17,10 @@ const PauseIcon = () =>
   </svg>
 
 export default function Player () {
-    const [isPlaying, setIsPlaying] = useState(false)
+    // const [isPlaying, setIsPlaying] = useState(false)
     const [currentSong, setCurrentSong] = useState(null)
     const audioRef = useRef()
-    
+    const {isPlaying, setIsPlaying} = usePlayerStore(state => state)
 
     useEffect(() => {
         audioRef.current.src = "/music/1/01.mp3"
