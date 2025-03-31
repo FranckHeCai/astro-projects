@@ -2,6 +2,7 @@
 import './src/styles/global.css'
 import AsideMenu from "../components/AsideMenu.astro"
 import { ClientRouter } from 'astro:transitions'
+import Player from '@/components/Player'
 ---
 <!doctype html>
 <html lang="en">
@@ -21,8 +22,8 @@ import { ClientRouter } from 'astro:transitions'
 			<main class="[grid-area:main] bg-neutral-900 overflow-y-auto rounded-lg">
 				<slot />
 			</main>
-			<footer class="[grid-area:footer] min-h-[50px]">
-				PLAYER
+			<footer class="[grid-area:player] min-h-[100px]">
+				<Player client:load transition:name="media-player" transition:persist/>
 			</footer>
 		</div>
 	</body>

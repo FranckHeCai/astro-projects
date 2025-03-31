@@ -3,13 +3,14 @@ import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import { playlists } from '@/lib/data';
 import PlaylistItemCard from "@/components/PlaylistItemCard.astro"
+import Greeting from "@/components/Greeting.svelte"
 ---
 
 <Layout>
 	<div class="relative transition-all duration-500 bg-green-600" id="playlist-container">
 
 		<div class="relative z-10 px-6 pt-10">
-			<h2 class="text-4xl font-bold">Good Morning</h2>
+			<Greeting />
 			<div class="flex flex-wrap mt-6 gap-4">
 				{
 					playlists.map(playlist => <PlaylistItemCard playlist={playlist} />)
