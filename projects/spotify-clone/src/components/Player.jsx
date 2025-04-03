@@ -3,6 +3,7 @@ import Pause from "@/icons/Pause.astro";
 import { useEffect, useRef, useState } from "react";
 import { usePlayerStore } from "@/store/playstore";
 import PlayerCurrentSong from "./PlayerCurrentSong";
+import { Slider } from "@/components/ui/slider"
 
 export const PlayIcon = () => <svg viewBox="0 0 24 24" class="h-8 w-8" fill="black"
 ><path fill="black" d="M8 5.14v14l11-7-11-7z"></path></svg>
@@ -24,7 +25,6 @@ export default function Player () {
     const {isPlaying, setIsPlaying, currentMusic} = usePlayerStore(state => state)
     const {songs, playlist, song} = currentMusic
     useEffect(() => {
-        audioRef.current.volume = 0.1
         isPlaying
         ? audioRef.current.play()
         : audioRef.current.pause()
@@ -47,7 +47,7 @@ export default function Player () {
     return(
         <div className="flex  justify-between w-full  px-2 z-50">
             <div>
-                {song && <PlayerCurrentSong song={song} />}
+                <PlayerCurrentSong {...currentMusic.song} />
             </div>
             <div className="grid place-content-center gap-4 flex-1">
                 <div className="flex justify-center">
@@ -61,7 +61,16 @@ export default function Player () {
                 </div>
             </div>
             <div >
-                Ajust Volume
+                <Slider
+                    defaultValue={[100]}
+                    max={100}
+                    min={0}
+                    className="w-[95px]"
+                    onValueChange={(value)=>{
+                        const [newValue] = value
+                        audioRef.current.volume = newValue/100
+                    }}
+                 />
             </div>
             <audio ref={audioRef}></audio>
         </div>
