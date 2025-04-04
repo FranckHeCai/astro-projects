@@ -1,6 +1,9 @@
 # build output
 dist/
 
+#
+CODE_OF_CONDUCT.md
+
 # generated types
 .astro/
 
