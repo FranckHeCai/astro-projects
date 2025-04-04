@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import svgl from "../../public/svgl.png";
 import stockin from "../../public/stockin.png";
+import qrsnap from "public/qrsnap.png";
 import moviesfordevs from "../../public/moviesfordevs.png";
 
 interface Project {
@@ -15,7 +16,7 @@ interface Project {
 const projects: Project[] = [
   {
     title: "QR Snap",
-    image: moviesfordevs as ImageMetadata,
+    image: qrsnap as ImageMetadata,
     link: "https://github.com/FranckHeCai/text-to-qr-generator",
     preview: "https://github.com/FranckHeCai/text-to-qr-generator",
     status: "On Development",
@@ -41,11 +42,11 @@ const projects: Project[] = [
               rel="noopener noreferrer"
               class="block"
             >
-              <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+              <div class="rounded-2xl bg-neutral-900 overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
                 <Image
                   src={project.image}
                   alt={project.title}
-                  class="w-full h-48 md:h-72 bg-neutral-800 object-cover group-hover:scale-105 transition-transform duration-300"
+                  class="w-full h-48 md:h-72 bg-neutral-800 object-cover group-hover:scale-105 transition-all duration-300 opacity-75 group-hover:opacity-90"
                 />
               </div>
               <div class="flex items-center px-3">
@@ -95,7 +96,7 @@ const projects: Project[] = [
     </div>
     <a
       target="_blank"
-      href="https://github.com/Gothsec?tab=repositories"
+      href="https://github.com/franckhecai?tab=repositories"
       aria-label="GitHub"
       class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
     >
