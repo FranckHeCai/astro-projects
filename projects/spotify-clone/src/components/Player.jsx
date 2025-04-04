@@ -83,11 +83,20 @@ export const SongControl = ({audio}) =>{
         setCurrentTime(audio.current.currentTime)
     }
 
+    const formatTime = (time) =>{
+        if(time == null || isNaN(time)) return `0:00`
+        const minutes = Math.floor( time / 60 )
+        const seconds = Math.floor( time % 60 )
+
+        return `${String(minutes)}:${String(seconds).padStart(2,"0")}`
+
+    } 
+
     const duration = audio?.current?.duration ?? 0
 
     return(
-        <div className="flex gap-2">
-            <span>{currentTime}</span>
+        <div className="flex gap-4 text-sm">
+            <span className="opacity-50">{formatTime(currentTime)}</span>
 
             <Slider
                 
@@ -101,7 +110,7 @@ export const SongControl = ({audio}) =>{
                 }}
             />
 
-            <span>{duration}</span>
+            <span className="opacity-50">{formatTime(duration)}</span>
         </div>
     )
     
