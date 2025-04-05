@@ -95,8 +95,8 @@ export const SongControl = ({audio}) =>{
     const duration = audio?.current?.duration ?? 0
 
     return(
-        <div className="flex gap-4 text-sm">
-            <span className="opacity-50">{formatTime(currentTime)}</span>
+        <div className="flex items-center gap-1.5 text-sm">
+            <span className="opacity-50 w-10 text-center">{formatTime(currentTime)}</span>
 
             <Slider
                 
@@ -110,7 +110,7 @@ export const SongControl = ({audio}) =>{
                 }}
             />
 
-            <span className="opacity-50">{formatTime(duration)}</span>
+            <span className="opacity-50 w-10 text-center">{formatTime(duration)}</span>
         </div>
     )
     
