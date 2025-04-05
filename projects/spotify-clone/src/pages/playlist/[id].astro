@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import { playlists, allPlaylists, songs } from '@/lib/data';
 import PlaylistItemCard from "@/components/PlaylistItemCard.astro"
 import PlaylistSongCard from '@/components/PlaylistSongCard.astro';
+import MusicsTable from '@/components/MusicsTable.astro';
 
 const { id } = Astro.params
 
@@ -20,7 +21,7 @@ const totalDuration = hours > 0 ? `${hours} hr ${minutes} min` : `${minutes} min
 ---
 
 <Layout>
-	<div class="px-6 py-7 relative flex flex-col gap-5 h-full overflow-x-hidden" id="playlist-container">
+	<div class="px-6 py-7 relative flex flex-col gap-10 h-full overflow-x-hidden" id="playlist-container">
         <header class="flex gap-4">
             <picture class="aspect-square w-52 h-52 flex-none shadow-2xl">
                 <img transition:name=`playlist ${id} image` class="object-cover w-full h-full flex-none rounded" src={playlist?.cover} alt={playlist?.title}>
@@ -36,10 +37,6 @@ const totalDuration = hours > 0 ? `${hours} hr ${minutes} min` : `${minutes} min
                 </div>
             </div>
         </header>
-        <div class="flex flex-col">
-            {
-                playlistSongs.map(song => <PlaylistSongCard song={song} />)
-            }
-        </div>
+        <MusicsTable songs={playlistSongs} />
 	</div>
 </Layout>
