@@ -1,5 +1,5 @@
-import Play from "@/icons/Play.astro";
-import Pause from "@/icons/Pause.astro";
+import { Play } from "@/icons/PlayerIcons";
+import { Pause } from "@/icons/PlayerIcons";
 import { useEffect, useRef, useState } from "react";
 import { usePlayerStore } from "@/store/playstore";
 import PlayerCurrentSong from "./PlayerCurrentSong";
@@ -10,7 +10,7 @@ export const PlayIcon = () => <svg viewBox="0 0 24 24" class="h-8 w-8" fill="bla
 ><path fill="black" d="M8 5.14v14l11-7-11-7z"></path></svg>
 
 export const PauseIcon = () => 
-<svg class="h-8 w-8" aria-hidden="true" viewBox="0 0 24 24" fill="black">
+<svg className="h-8 w-8" aria-hidden="true" viewBox="0 0 24 24" fill="black">
     <g transform="translate(4, 4)">
         <path fill="black"
         d="M2.7 1a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7H2.7zm8 0a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-2.6z"
@@ -158,8 +158,8 @@ export default function Player () {
                     <button onClick={handleClick} className="bg-neutral-50 rounded-full">
                     {
                         isPlaying 
-                        ? <PauseIcon />
-                        : <PlayIcon />
+                        ? <Pause className={"h-8 w-8 text-neutral-950"} />
+                        : <Play className={"h-8 w-8 text-neutral-950"} />
                     }
                     </button>
                     <SongControl audio={audioRef} />

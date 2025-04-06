@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { PauseIcon, PlayIcon } from "./Player";
+import { Play, Pause } from "@/icons/PlayerIcons";
 import { usePlayerStore } from "@/store/playstore";
+import PlaylistCardPlayIcon from "./ui/PlaylistCardPlayIcon";
 
-export function CardPlayButton ({ id }) {
+
+export function CardPlayButton ({ id, className, iconColor }) {
     const { isPlaying, setIsPlaying, currentMusic, setCurrentMusic } = usePlayerStore(state => state)
     const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id
 
@@ -11,14 +14,6 @@ export function CardPlayButton ({ id }) {
             setIsPlaying(false)
             return
         }
-
-        // setIsPlaying(!isPlaying)
-
-        // setCurrentMusic({
-        //     playlist:{
-        //         id
-        //     }
-        // })
 
         fetch(`api/get-info-playlist.json?id=${id}`)
         .then(res => res.json())
@@ -29,12 +24,12 @@ export function CardPlayButton ({ id }) {
         })
     }
     return(
-        <button className="absolute transition-all right-5 bottom-18 translate-y-4 duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 z-10 rounded-full bg-green-600 p-2" onClick={handleClick}>
-            {
-                isPlayingPlaylist
-                    ? <PauseIcon />
-                    : <PlayIcon />
-            }
+        <button className={className}  onClick={handleClick}>
+                {
+                    isPlayingPlaylist
+                        ? <Pause className={`h-8 w-8 ${iconColor}`} />
+                        : <Play className={`h-8 w-8 ${iconColor}`} />
+                }
         </button>
     )
 }
