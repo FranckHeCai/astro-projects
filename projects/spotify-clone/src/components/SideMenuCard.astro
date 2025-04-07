@@ -2,6 +2,7 @@
 import Play from "@/icons/Play.astro"
 import { type Playlist } from "@/lib/data"
 import { CardPlayButton } from "./CardPlayButton"
+import SideMenuCardText from "./SideMenuCardText"
 interface Props {
     playlist : Playlist
 }
@@ -16,7 +17,7 @@ const { id, albumId, title, color, cover, artists } = playlist
             </picture>
         </div>
         <div class="flex flex-auto flex-col truncate">
-            <h3>{title}</h3>
+            <SideMenuCardText client:visible id={id} title={title} />
             <p class="text-neutral-400 text-sm">{artists}</p>
         </div>
     </a>

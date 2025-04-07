@@ -5,22 +5,28 @@ import { usePlayerStore } from "@/store/playstore";
 import PlaylistCardPlayIcon from "./ui/PlaylistCardPlayIcon";
 
 
-export function CardPlayButton ({ id, className, iconColor }) {
+export function CardPlayButton ({ id, className, iconColor, songPlayed }) {
     const { isPlaying, setIsPlaying, currentMusic, setCurrentMusic } = usePlayerStore(state => state)
     const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id
-
     const handleClick = () =>{
         if(isPlayingPlaylist){
             setIsPlaying(false)
             return
         }
 
-        fetch(`api/get-info-playlist.json?id=${id}`)
+        fetch(`/api/get-info-playlist.json?id=${id}`)
         .then(res => res.json())
         .then(data => {
             const {songs, playlist } = data
             setIsPlaying(true)
-            setCurrentMusic({songs, playlist, song: songs[0]})
+            
+            if(songPlayed){
+                const selectedSong = songs.find(song => song.id === songPlayed.id)
+                console.log(selectedSong)
+                setCurrentMusic({songs, playlist, song: selectedSong})
+            }else{
+                setCurrentMusic({songs, playlist, song: songs[0]})
+            }
         })
     }
     return(

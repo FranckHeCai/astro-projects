@@ -1,6 +1,12 @@
 ---
 import Play from "@/icons/Play.astro";
 import { type Song } from "@/lib/data"; 
+import SideMenuCardText from "./SideMenuCardText";
+import MusicTableText from "@/components/MusicTableText"
+import MusicTableButton from "@/components/MusicTableButton"
+import MusicTableCardText from "@/components/MusicTableCardText"
+import { CardPlayButton } from "./CardPlayButton";
+import type Id from "@/pages/playlist/[id].astro";
 
 export interface Props {
     songs: Song[]
@@ -28,12 +34,19 @@ const { songs } = Astro.props
             <tr class="text-neutral-300 hover:bg-neutral-700 rounded group">
                     <td class="pl-5 py-2 rounded-tl-md rounded-bl-md">
                         <div class="relative">
-                            <span class=" group-hover:hidden">{index + 1}</span>
-                            <button class="hidden h-full group-hover:flex group-hover:items-center absolute left-[-8px] cursor-pointer">
+                            {/* <span class=" group-hover:hidden">{index + 1}
+
+                            </span> */}
+                            <span class=" group-hover:hidden">
+                                <MusicTableText client:visible albumId={song.albumId} songId={song.id} text={index + 1} />
+                            </span>
+                            {/* <button class="hidden h-full group-hover:flex group-hover:items-center absolute left-[-8px] cursor-pointer">
                                 <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
                                     <path fill="currentColor" d="M8 5.14v14l11-7-11-7z"></path>
                                 </svg>
-                            </button>
+                            </button> */}
+
+                            <CardPlayButton client:visible id={song.albumId} className={"hidden h-full group-hover:flex group-hover:items-center absolute left-[-8px] cursor-pointer"} iconColor={"text-neutral-50"} songPlayed={song} />
                         </div>
                     </td>
                     <td class="py-2 flex gap-3">
@@ -41,7 +54,7 @@ const { songs } = Astro.props
                             <img class="w-10 h-10" src={song.image} alt={song.title} />
                         </picture>
                         <div class="flex flex-col justify-center gap-1">
-                            <h3>{song.title}</h3>
+                            <MusicTableCardText client:load song={song} />
                             <p class="text-neutral-600 text-sm">{song.artists.join(", ")}</p>
                         </div>
                     </td>
