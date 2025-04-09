@@ -7,6 +7,7 @@ import MusicTableButton from "@/components/MusicTableButton"
 import MusicTableCardText from "@/components/MusicTableCardText"
 import { CardPlayButton } from "./CardPlayButton";
 import type Id from "@/pages/playlist/[id].astro";
+import { PlaylistSongButton } from "./PlaylistSongButton";
 
 export interface Props {
     songs: Song[]
@@ -34,23 +35,27 @@ const { songs } = Astro.props
             <tr class="text-neutral-300 hover:bg-neutral-700 rounded group">
                     <td class="px-4 py-2 rounded-tl-md rounded-bl-md w-7">
                         <div class="relative">
-                            <span class=" group-hover:hidden">
-                                <MusicTableText client:visible albumId={song.albumId} songId={song.id} text={index + 1} />
+                            <span class="group-hover:hidden">
+                                <MusicTableCardText client:visible song={song}>
+                                {index + 1}
+                                </MusicTableCardText>
                             </span>
                             {/* <button class="hidden h-full group-hover:flex group-hover:items-center absolute left-[-8px] cursor-pointer">
                                 <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
                                     <path fill="currentColor" d="M8 5.14v14l11-7-11-7z"></path>
                                 </svg>
                             </button> */}
-                            <CardPlayButton client:visible id={song.albumId} className={"hidden h-full group-hover:flex group-hover:items-center absolute left-[-8px] cursor-pointer"} iconColor={"text-neutral-50"} songPlayed={song} />
+                            <PlaylistSongButton client:load id={String(song.albumId)} songPlayed={song} />
                         </div>
                     </td>
                     <td class="px-4 py-2 flex gap-3">
                         <picture>
                             <img class="w-10 h-10" src={song.image} alt={song.title} />
                         </picture>
-                        <div class="flex flex-col justify-center gap-1">
-                            <MusicTableCardText client:load song={song} />
+                        <div class="flex flex-col justify-center gap-0.5">
+                            <MusicTableCardText client:load song={song}>
+                                {song.title}
+                            </MusicTableCardText>
                             <p class="text-neutral-600 text-sm">{song.artists.join(", ")}</p>
                         </div>
                     </td>

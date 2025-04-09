@@ -5,6 +5,7 @@ import { usePlayerStore } from "@/store/playstore";
 export function CardPlayButton ({ id, className, iconColor, songPlayed=null }) {
     const { isPlaying, setIsPlaying, currentMusic, setCurrentMusic } = usePlayerStore(state => state)
     const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id
+    
     const handleClick = () =>{
         if(isPlayingPlaylist){
             setIsPlaying(false)
@@ -21,6 +22,7 @@ export function CardPlayButton ({ id, className, iconColor, songPlayed=null }) {
                 const selectedSong = songs.find(song => song.id === songPlayed.id)
                 console.log(selectedSong)
                 setCurrentMusic({songs, playlist, song: selectedSong})
+                
             }else{
                 setCurrentMusic({songs, playlist, song: songs[0]})
             }
