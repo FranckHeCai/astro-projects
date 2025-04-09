@@ -2,9 +2,9 @@ import { usePlayerStore } from "@/store/playstore";
 
 const MusicTableCardText = ({song}) => {
     const { isPlaying, currentMusic } = usePlayerStore(state => state)
-    const isPlayingPlaylist = isPlaying && currentMusic?.song.id === song.id
+    const isPlayingPlaylistSong = isPlaying && currentMusic?.playlist.albumId === song.albumId && currentMusic?.song.id === song.id
     return (
-            <h3 className={`${isPlayingPlaylist ? "text-green-600" : ""}`}
+            <h3 className={`${isPlayingPlaylistSong ? "text-green-600" : ""}`}
             >{song.title}</h3>
     );
 };

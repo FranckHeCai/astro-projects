@@ -1,11 +1,8 @@
-import { useState } from "react";
-import { PauseIcon, PlayIcon } from "./Player";
 import { Play, Pause } from "@/icons/PlayerIcons";
 import { usePlayerStore } from "@/store/playstore";
-import PlaylistCardPlayIcon from "./ui/PlaylistCardPlayIcon";
 
 
-export function CardPlayButton ({ id, className, iconColor, songPlayed }) {
+export function CardPlayButton ({ id, className, iconColor, songPlayed=null }) {
     const { isPlaying, setIsPlaying, currentMusic, setCurrentMusic } = usePlayerStore(state => state)
     const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id
     const handleClick = () =>{

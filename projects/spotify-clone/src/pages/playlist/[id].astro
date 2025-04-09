@@ -4,6 +4,7 @@ import { playlists, allPlaylists, songs } from '@/lib/data';
 import PlaylistItemCard from "@/components/PlaylistItemCard.astro"
 import PlaylistSongCard from '@/components/PlaylistSongCard.astro';
 import MusicsTable from '@/components/MusicsTable.astro';
+import { CardPlayButton } from '@/components/CardPlayButton';
 
 const { id } = Astro.params
 
@@ -37,6 +38,10 @@ const totalDuration = hours > 0 ? `${hours} hr ${minutes} min` : `${minutes} min
                 </div>
             </div>
         </header>
+        <div>
+            <CardPlayButton client:load id={id} className={"rounded-full bg-green-600 p-2 hover:bg-green-500 transition duration-100 hover:scale-105"} iconColor={"text-neutral-950"} />
+        </div>
         <MusicsTable songs={playlistSongs} />
+        
 	</div>
 </Layout>
