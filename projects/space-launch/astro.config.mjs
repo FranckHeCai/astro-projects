@@ -5,8 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  base: "/space-launch/",
   vite: {
     plugins: [tailwindcss()]
   },
-  output: "server",
+  output: "static",
 });
